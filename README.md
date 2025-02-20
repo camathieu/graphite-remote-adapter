@@ -10,7 +10,7 @@ It is based on [remote_storage_adapter](https://github.com/prometheus/prometheus
 You can either `go get` it:
 
 ```
-$ go get github.com/criteo/graphite-remote-adapter/...
+$ go get -d github.com/criteo/graphite-remote-adapter/...
 $ cd $GOPATH/src/github.com/criteo/graphite-remote-adapter
 $ make build
 $ ./graphite-remote-adapter --graphite.read.url='http://localhost:8080' --graphite.write.carbon-address=localhost:2003
@@ -102,6 +102,10 @@ graphite:
 Graphite 1.1.0 supports tags: http://graphite.readthedocs.io/en/latest/tags.html, you can
 enable support for tags in the remote adapter with `--graphite.enable-tags` or in the
 configuration file.
+
+### Filtering tags
+
+Using `--graphite.filtered-tags` (or the `filtered_tags` yaml field in configuration files), it is possible to exports as tags only a given set of label names. Other labels/values won't be exported as tags, and will still be part of the metric name. This feature is only supported for Graphite Tags (not available when using the OpenMetrics format).
 
 ## Configuring Prometheus
 
